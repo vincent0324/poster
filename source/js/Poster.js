@@ -1,32 +1,41 @@
 //电视剧大图滚动
 (function($) {
-    var posterMovieGrid = function(option) {
+    var Poster = function(option) {
         if (typeof(arguments[0]) == 'undefined') {
             return false;
         }
+
         var option = typeof(arguments[0]) == 'object'
             ? arguments[0]
             : {};
+
         this.option = option;
         this.reset();
+
         var _this = this;
         $(window).resize(function() {
             //_this.reset();
         });
     }
 
-    posterMovieGrid.prototype = {
+    Poster.prototype = {
+
         reset: function(o) {
             if (typeof(o) == 'object') {
-                for (i in o)
+                for (i in o) {
                     this.option[i] = o[i];
                 }
-            option = this.option;
+            }
+
+            var option = this.option;
             this.parent = option.parent
                 ? document.getElementById(option.parent)
                 : 'document';
-            if (!this.parent)
+
+            if (!this.parent) {
                 return false;
+            }
+
             this.parent.innerHTML = '';
             this.stop();
             this.delay = option.delay
@@ -38,7 +47,7 @@
                 : 'product';
             this.perpage = option.perpage
                 ? option.perpage
-                : 2;
+                : 2; // 为啥默认不是1
             this.initnum = option.initnum
                 ? option.initnum
                 : 1;
@@ -54,8 +63,11 @@
 
             this.total = this.data.length;
             this.pagesize = Math.ceil(this.total / this.perpage);
-            if (!this.pagenow)
+
+            if (!this.pagenow) {
                 this.pagenow = this.initnum;
+            }
+
             this.pages = [];
             this.pagenums = [];
             this.timer = null;
@@ -74,18 +86,21 @@
                     this.width = 970;
             }
             */
-            this.posterVideoPlaying = false;
+
+            this.posterVideoPlaying = false; // ?
             this.init();
             this.initpage(this.pagenow);
         },
+
         paging: function() {
-            var group = document.createElement('DIV');
+            var group = document.createElement('div');
             group.className = 'page';
 
             var datafrom = '';
+
             for (var i = 0; i < this.total; i++) {
                 var data = this.data[i];
-                var item = document.createElement('UL');
+                var item = document.createElement('ul');
                 item.className = 'item';
                 item.setAttribute('sn', i + 1);
                 var itemStr = '';
@@ -100,16 +115,18 @@
                     this.pages.push(group);
                     group.setAttribute('pagenum', Math.ceil((i + 1) / this.perpage));
                     group.className = 'page';
-                    group = document.createElement('DIV');
+                    group = document.createElement('div');
                 }
             }
+
             for (var i = 0; i < this.pagesize; i++) {
-                var pagenum = document.createElement('DIV');
+                var pagenum = document.createElement('div');
                 pagenum.setAttribute('pagenum', i + 1);
                 this.pagenums.push(pagenum);
                 this.dompager.appendChild(pagenum);
             }
         },
+
         loadimage: function(pagenum) {
             var index = pagenum - 1;
             var pagecon = this.pages[index];
@@ -218,6 +235,7 @@
                 ? 'auto'
                 : type);
         },
+
         start: function() {
             var _this = this;
             if (_this.paused) {
@@ -232,25 +250,29 @@
                 }
             }, this.delay);
         },
+
         stop: function() {
             clearInterval(this.timer);
             this.timer = null;
         },
+
         pause: function() {
             this.paused = true;
         },
+
         init: function() {
             var _this = this;
-            this.dom = document.createElement('DIV');
-            this.dom.className = 'posterMovieGrid';
-            this.domitems = document.createElement('DIV');
+
+            this.dom = document.createElement('div');
+            this.dom.className = 'poster';
+            this.domitems = document.createElement('div');
             this.domitems.className = 'pages';
-            this.dompager = document.createElement('DIV');
+            this.dompager = document.createElement('div');
             this.dompager.className = 'pager';
 
-            this.btnprev = document.createElement('DIV');
+            this.btnprev = document.createElement('div');
             this.btnprev.className = 'btnprev';
-            this.btnnext = document.createElement('DIV');
+            this.btnnext = document.createElement('div');
             this.btnnext.className = 'btnnext';
 
             this.paging();
@@ -276,6 +298,7 @@
             }
 
         },
+
         bind: function() {
             var _this = this;
             var ua = navigator.userAgent.toLowerCase();
@@ -346,5 +369,5 @@
         }
     }
 
-    window.posterMovieGrid = posterMovieGrid;
+    window.Poster = Poster;
 })($);

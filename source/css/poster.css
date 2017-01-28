@@ -1,4 +1,4 @@
-.posterMovieGrid {
+.poster {
     -moz-user-select: none;
     -webkit-user-select: none;
     overflow: hidden;
@@ -9,7 +9,7 @@
     margin-bottom: 20px;
 }
 
-.posterMovieGrid .pages, .posterMovieGrid .page {
+.poster .pages, .poster .page {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,7 +18,7 @@
     background: #888;
 }
 
-.posterMovieGrid .page .item {
+.poster .page .item {
     overflow: hidden;
     zoom: 1;
     position: relative;
@@ -29,7 +29,7 @@
     list-style: none;
 }
 
-.posterMovieGrid .page .item_img {
+.poster .page .item_img {
     overflow: hidden;
     z-index: 1;
     position: absolute;
@@ -40,7 +40,7 @@
     background: url(//r1.ykimg.com/051000004E65BA8397927313BF036E73.gif) no-repeat center center;
 }
 
-.posterMovieGrid .page .item_img img {
+.poster .page .item_img img {
     display: block;
     position: absolute;
     top: 0;
@@ -51,7 +51,7 @@
     margin-left: -595px;
 }
 
-.posterMovieGrid .page .item_url {
+.poster .page .item_url {
     z-index: 3;
     position: absolute;
     top: 0;
@@ -60,14 +60,14 @@
     height: 100%;
 }
 
-.posterMovieGrid .page .item_url a {
+.poster .page .item_url a {
     display: block;
     width: 100%;
     height: 100%;
     background: url(//static.youku.com/index/img/spacer.gif);
 }
 
-.posterMovieGrid .pager {
+.poster .pager {
     overflow: hidden;
     z-index: 10;
     position: absolute;
@@ -79,7 +79,7 @@
     text-align: center;
 }
 
-.posterMovieGrid .pager div {
+.poster .pager div {
     cursor: pointer;
     overflow: hidden;
     display: inline-block;
@@ -98,16 +98,16 @@
     background: #ffffff;
 }
 
-.posterMovieGrid .pager div:hover {
+.poster .pager div:hover {
     background: #bdbdbd;
 }
 
-.posterMovieGrid .pager div.current {
+.poster .pager div.current {
     cursor: default;
     background: #69aaec;
 }
 
-.posterMovieGrid .btnprev, .posterMovieGrid .btnnext {
+.poster .btnprev, .poster .btnnext {
     cursor: pointer;
     visibility: hidden;
     z-index: 10;
@@ -118,20 +118,20 @@
     margin-top: -23px;
 }
 
-.posterMovieGrid .btnprev {
+.poster .btnprev {
     left: 7px;
     background: url("//r1.ykimg.com/0510000051AD63E96714C04A1400547A") no-repeat;
     _background: none;
     _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://res.mfs.ykimg.com/0510000051AD63E96714C04A1400547A");
 }
 
-.posterMovieGrid .btnnext {
+.poster .btnnext {
     right: 7px;
     background: url("//r1.ykimg.com/0510000051AD63F56714C04A1305CFEF") no-repeat;
     _background: none;
     _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="//r1.ykimg.com/0510000051AD63F56714C04A1305CFEF");
 }
 
-body.yk-w1190 .posterMovieGrid {
+body.yk-w1190 .poster {
     width: 1190px;
 }
