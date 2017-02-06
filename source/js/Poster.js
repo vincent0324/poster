@@ -1,5 +1,5 @@
-//电视剧大图滚动
 (function($) {
+
     var Poster = function(option) {
         if (typeof(arguments[0]) == 'undefined') {
             return false;
@@ -16,7 +16,7 @@
         $(window).resize(function() {
             //_this.reset();
         });
-    }
+    };
 
     Poster.prototype = {
 
@@ -139,6 +139,7 @@
                 }
             }
         },
+
         initpage: function(pagenum) {
             var pagenum = (pagenum > this.pagesize)
                 ? this.pagesize
@@ -155,6 +156,7 @@
 
             return this.domitems.appendChild(pagecon);
         },
+
         turnpage: function(pagenum, type) {
             if (this.locked) {
                 return;
@@ -219,6 +221,7 @@
                 this.stop();
             }
         },
+
         prev: function(type) {
             var pageto = (this.pagenow - 1) < 1
                 ? this.pagesize
@@ -227,6 +230,7 @@
                 ? 'auto'
                 : type);
         },
+
         next: function(type) {
             var pageto = (this.pagenow + 1) > this.pagesize
                 ? 1
@@ -367,7 +371,7 @@
                 }
             }
         }
-    }
+    };
 
     window.Poster = Poster;
 })($);
