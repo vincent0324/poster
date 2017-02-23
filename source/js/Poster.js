@@ -209,6 +209,7 @@
                     }, t)
                 })(k)
             }
+
             setTimeout(function() {
                 _this.loadimage(pagenum);
                 _this.pages[pagenum - 1].style.left = '0px';
@@ -217,6 +218,7 @@
                 _this.pagenow = pagenum;
                 _this.locked = false;
             }, d);
+
             if (this.rotatetype == "proinfo") {
                 this.stop();
             }
@@ -226,6 +228,7 @@
             var pageto = (this.pagenow - 1) < 1
                 ? this.pagesize
                 : this.pagenow - 1;
+
             this.turnpage(pageto, typeof(type) == 'undefined'
                 ? 'auto'
                 : type);
@@ -235,6 +238,7 @@
             var pageto = (this.pagenow + 1) > this.pagesize
                 ? 1
                 : this.pagenow + 1;
+
             this.turnpage(pageto, typeof(type) == 'undefined'
                 ? 'auto'
                 : type);
@@ -242,12 +246,15 @@
 
         start: function() {
             var _this = this;
+
             if (_this.paused) {
                 _this.paused = false;
             }
+
             if (this.timer) {
                 return;
             }
+
             this.timer = setInterval(function() {
                 if (!_this.paused) {
                     _this.next('keep-left');
@@ -307,11 +314,14 @@
             var _this = this;
             var ua = navigator.userAgent.toLowerCase();
             var isIOS = ua.match(/ipad|iphone|ipod|itouch/i);
+
             this.btnprev.style.visibility = 'visible';
             this.btnnext.style.visibility = 'visible';
+
             for (var i = 0; i < this.pagesize; i++) {
                 this.pagenums[i].ontouchstart = this.pagenums[i].onclick = function() {
                     var pagenum = parseInt(this.getAttribute('pagenum'), 10);
+
                     _this.turnpage(pagenum, 'auto');
                 }
             }
@@ -319,41 +329,52 @@
             this.btnprev.ontouchstart = this.btnprev.onclick = function() {
                 _this.prev('keep-right');
             }
+
             this.btnnext.ontouchstart = this.btnnext.onclick = function() {
                 _this.next('keep-left');
             }
+
             //for IOS
             if (isIOS) {
                 this.dom.ontouchstart = function(e) {
                     var e = e.targetTouches[0];
+
                     _this.pos_start = e.pageX;
                     _this.stop();
                 }
+
                 this.dom.ontouchend = this.dom.ontouchend = function() {
                     _this.start();
                 }
+
                 this.dom.ontouchmove = function(e) {
                     if (_this.gestures) {
                         return;
                     }
+
                     var e = e.targetTouches[0];
                     //e.stopPropagation();
                     //e.preventDefault();
                     var end = e.pageX;
                     var offset = end - _this.pos_start;
+
                     if (offset >= 50) {
                         _this.prev('keep-right');
                     } else if (offset <= -50) {
                         _this.next('keep-left');
                     }
+
                     return false;
                 }
+
                 this.dompager.ontouchmove = function() {
                     return false;
                 }
+
                 this.dom.ongesturestart = function() {
                     _this.gestures = true;
                 }
+
                 this.dom.ongestureend = function() {
                     _this.gestures = false;
                 }
@@ -362,6 +383,7 @@
                 this.dom.onmouseover = function() {
                     _this.stop();
                 }
+
                 if (this.rotatetype == 'circle' || this.rotatetype == "product") {
                     this.dom.onmouseout = function() {
                         if (!_this.posterVideoPlaying) {
